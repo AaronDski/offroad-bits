@@ -1,0 +1,2 @@
+class UserPartsController < ApplicationController
+end
