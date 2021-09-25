@@ -16,11 +16,25 @@ ActiveRecord::Schema.define(version: 2021_09_24_170427) do
   enable_extension "plpgsql"
 
   create_table "parts", force: :cascade do |t|
+    t.float "price"
+    t.integer "quantity"
+    t.integer "year"
+    t.string "make"
+    t.string "model"
+    t.string "image"
+    t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "user_carts", force: :cascade do |t|
+    t.float "price"
+    t.integer "quantity"
+    t.integer "year"
+    t.string "make"
+    t.string "model"
+    t.string "image"
+    t.text "description"
     t.bigint "part_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -48,7 +62,7 @@ ActiveRecord::Schema.define(version: 2021_09_24_170427) do
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "username"
-    t.string "password"
+    t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
