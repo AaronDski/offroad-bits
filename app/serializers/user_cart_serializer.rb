@@ -1,5 +1,5 @@
 class UserCartSerializer < ActiveModel::Serializer
-  attributes :id
-  has_one :part
+  attributes :id, :title, :price, :quantity, :year, :make, :model, :image, :description
+  has_many :parts
   has_one :user
 end

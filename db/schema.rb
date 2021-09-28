@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 2021_09_24_170427) do
   enable_extension "plpgsql"
 
   create_table "parts", force: :cascade do |t|
+    t.string "title"
     t.float "price"
     t.integer "quantity"
     t.integer "year"
@@ -28,6 +29,7 @@ ActiveRecord::Schema.define(version: 2021_09_24_170427) do
   end
 
   create_table "user_carts", force: :cascade do |t|
+    t.string "title"
     t.float "price"
     t.integer "quantity"
     t.integer "year"
@@ -44,6 +46,7 @@ ActiveRecord::Schema.define(version: 2021_09_24_170427) do
   end
 
   create_table "user_parts", force: :cascade do |t|
+    t.string "title"
     t.float "price"
     t.integer "quantity"
     t.integer "year"
