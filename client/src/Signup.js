@@ -7,7 +7,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 
 
-function Login({setUser, onLogin,  }){
+function Signup({setUser }){
 
     
 
@@ -27,39 +27,15 @@ function Login({setUser, onLogin,  }){
             console.log('clicked')
         }
 
-        // function handleSubmit(e) {
-        //     e.preventDefault();
-
-        //     const userCred = {
-        //         username: userName,
-        //         password: password,
-        //         name: name,
-        //     }
-        //     fetch("/login", {
-        //       method: "POST",
-        //       credentials: 'include',
-        //       headers: {
-        //         "Content-Type": "application/json",
-        //       },
-        //       body: JSON.stringify(userCred),
-        //     }).then((r) => {
-        //       if (r.ok) {
-        //         r.json().then((user) => onLogin(user));
-        //       }
-        //       history.push('/account')
-        //     }
-        //     );
-        //   }
-
         const handleSubmit = (e) => {
             e.preventDefault()
             console.log('submited')
 
             const userCred = {
-                        username: userName,
-                        password: password,
-                        name: name,
-                    }
+                user_name: userName,
+                password: password,
+                name: name,
+            }
 
             if (login) {
                 fetch(`/login`, {
@@ -99,10 +75,10 @@ function Login({setUser, onLogin,  }){
 
 return(
 
+        <form onSubmit={handleSubmit} >
 
         <Box
           component="form"
-          onSubmit={(e) => handleSubmit(e)}
           sx={{
             '& .MuiTextField-root': { m: 1, width: '25ch' },    
             '& .MuiButton-root': { m: 1, width: '15ch' }
@@ -132,9 +108,10 @@ return(
               autoComplete="current-password"
               onChange={(e) => setPassword(e.target.value)}
             />
-             <Button variant="outlined" type="submit" onClick={handleClick }>Login</Button>
+             <Button variant="outlined" onClick={handleClick}>Login</Button>
           </div>
         </Box>
+        </form>
 
 
 
@@ -144,5 +121,5 @@ return(
 
 }
 
-export default Login
+export default Signup
 

@@ -35,7 +35,7 @@ export default function Home() {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Learn More</Button>
+        <Button size="small">ADD TO CART</Button>
       </CardActions>
     </Card>
   );
