@@ -11,6 +11,7 @@ import './App.css';
 function App() {
   const history = useHistory()
   const [user, setUser] = useState(null)
+  const [fullPartList, setFullPartList] = useState([])
 
   useEffect(() => {
     fetch('/me').then((response) => {
@@ -32,6 +33,18 @@ function App() {
     history.push('/account')
   }
 
+  useEffect(() => {
+    fetch('http://localhost:3000/cart')
+    .then((r) => r.json())
+    .then(setFullPartList)
+  },[]);
+
+  useEffect(() => {
+    fetch('http://localhost:3000/parts')
+    .then((r) => r.json())
+    .then(setFullPartList)
+  },[]);
+
 
 
   return (
@@ -42,7 +55,7 @@ function App() {
        <Login setUser={setUser} onLogin={onLogin}  />
       </Route>
       <Route exact path="/">
-        <Home/>
+        <Home fullPartList={fullPartList}/>
        </Route> 
        <Route exact path="/account">
         <Account/>

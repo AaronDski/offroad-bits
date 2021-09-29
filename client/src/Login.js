@@ -27,30 +27,7 @@ function Login({setUser, onLogin,  }){
             console.log('clicked')
         }
 
-        // function handleSubmit(e) {
-        //     e.preventDefault();
-
-        //     const userCred = {
-        //         username: userName,
-        //         password: password,
-        //         name: name,
-        //     }
-        //     fetch("/login", {
-        //       method: "POST",
-        //       credentials: 'include',
-        //       headers: {
-        //         "Content-Type": "application/json",
-        //       },
-        //       body: JSON.stringify(userCred),
-        //     }).then((r) => {
-        //       if (r.ok) {
-        //         r.json().then((user) => onLogin(user));
-        //       }
-        //       history.push('/account')
-        //     }
-        //     );
-        //   }
-
+        
         const handleSubmit = (e) => {
             e.preventDefault()
             console.log('submited')
