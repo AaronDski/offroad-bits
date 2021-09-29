@@ -17,30 +17,28 @@ const bull = (
 
 
 
-function Home({fullPartList}) {
-
-  const renderParts = fullPartList.map((part) => {
-    console.log(fullPartList)
+function Home({part,handleAddToCart, user}) {
+  
     return (
       <Card key={part.id}sx={{ minWidth: 275, maxWidth: 400 }}>
         <CardContent>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-            part.title
+            {part.title}
           </Typography>
           <Typography variant="h5" component="div">
-            be{bull}nev{bull}o{bull}lent
+            ${part.price}
           </Typography>
           <Typography sx={{ mb: 1.5 }} color="text.secondary">
             adjective
           </Typography>
           <Typography variant="body2">
-            well meaning and kindly.
+            {part.year}, {part.make}, {part.model}
             <br />
-            {'"a benevolent smile"'}
+            {part.description}
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small">ADD TO CART</Button>
+          <Button size="small" onClick={() => handleAddToCart(part, user)}>ADD TO CART</Button>
         </CardActions>
       </Card>
     );
@@ -48,8 +46,10 @@ function Home({fullPartList}) {
 
 
   
-  });
-  return{renderParts}
+  
+  // return(
+  //   <p></p>
+  // )
 }
 
 export default Home

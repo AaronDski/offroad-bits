@@ -8,18 +8,13 @@ import StoreTwoToneIcon from '@mui/icons-material/StoreTwoTone';
 import { NavLink } from 'react-router-dom'
 
 
-function Navbar(onLogout) {
+function Navbar({handleLogoutClick}) {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  const handleLogoutClick = () => {
-    fetch('/logout', {
-      method: 'DELETE',
-    })
-      .then(onLogout)
-  }
+  
 
   return (
     <Tabs value={value} onChange={handleChange} aria-label="icon label tabs example">

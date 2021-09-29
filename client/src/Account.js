@@ -1,11 +1,13 @@
 
 
-function Account() {
+function Account({user}) {
+    console.log(user)
 
-return(
+    const renderAcc = user  ? (<p>Hello {user.name}</p>) : (<p>Please login or sign up to view account</p>)
 
-    <p>Hello World</p>
-)
+    return (<>{renderAcc}</>);
+
+
 
 }
 
