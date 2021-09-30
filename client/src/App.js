@@ -1,4 +1,4 @@
-import { Route, Switch, useHistory, useLocation} from 'react-router-dom';
+import { Route, Switch, useHistory, } from 'react-router-dom';
 import { React, useState, useEffect,  } from 'react';
 import Login from './Login';
 import HomeContainer from './HomeContainer';
@@ -26,14 +26,17 @@ function App() {
       
     },[]);
 
-    console.log(fullPartList)
+    // console.log(fullPartList)
 
-    // useEffect(() => {
-    //   fetch('http://localhost:3000/cart')
-    //   .then((r) => r.json())
-    //   .then(setCartArr)
-    // },[]);
+    useEffect(() => {
+      fetch('/user_carts')
+      .then((r) => r.json())
+      .then(setCartArr)
+    },[]);
+
+    
     function handleAddToCart(part, user) {
+      
       const cartItem = {
         user_id: user.id,
         part_id: part.id,
@@ -57,6 +60,7 @@ function App() {
       fetch("/user_carts", config)
         .then((r) => r.json())
         .then((data) => setCartArr([...cartArr, data]));
+        console.log(cartArr)
     }
 
   useEffect(() => {

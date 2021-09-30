@@ -1,10 +1,11 @@
+import Cart from './Cart'
 
+function CartContainer({user, cartArr}){
 
-function CartContainer(){
-
-
+    const renderCart = user !== [] ? cartArr.map(item => <Cart item={item} user={user} />) : <p>Loading Cart</p>
+    
     return(
-        <p>Cart</p>
+        <p>{renderCart}</p>
     )
 }
 
