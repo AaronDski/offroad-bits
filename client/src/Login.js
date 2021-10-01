@@ -14,7 +14,6 @@ function Login({ setUser, onLogin }) {
   const [login, setLogin] = useState(true);
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
 
   const handleClick = () => {
     setLogin((login) => !login);
@@ -28,7 +27,6 @@ function Login({ setUser, onLogin }) {
     const userCred = {
       username: userName,
       password: password,
-      name: name,
     };
 
     if (login) {
@@ -89,12 +87,6 @@ function Login({ setUser, onLogin }) {
           label="UserName"
           type="UserName"
           onChange={(e) => setUserName(e.target.value)}
-        />
-        <TextField
-          id="outlined-password-input"
-          label="Name"
-          type="name"
-          onChange={(e) => setName(e.target.value)}
         />
         <TextField
           id="outlined-password-input"

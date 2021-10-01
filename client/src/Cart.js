@@ -8,8 +8,13 @@ import Typography from '@mui/material/Typography';
 
 
 
-function Cart({item}) {
+function Cart({item, handleDeleteClick}) {
   
+
+
+
+  
+
     return (
       <Card key={item.id}sx={{ minWidth: 275, maxWidth: 400 }}>
         <CardContent>
@@ -29,7 +34,7 @@ function Cart({item}) {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small">Remove From Cart</Button>
+          <Button size="small" onClick={() => handleDeleteClick(item.id)}>Remove From Cart</Button>
         </CardActions>
       </Card>
     );

@@ -4,6 +4,7 @@ import Login from './Login';
 import HomeContainer from './HomeContainer';
 import Account from './Account';
 import Navbar from './Navbar';
+import Cart from './Cart';
 
 import './App.css';
 import CartContainer from './CartContainer';
@@ -26,7 +27,7 @@ function App() {
       
     },[]);
 
-    // console.log(fullPartList)
+    console.log(fullPartList)
 
     useEffect(() => {
       fetch('/user_carts')
@@ -34,7 +35,7 @@ function App() {
       .then(setCartArr)
     },[]);
 
-    
+
     function handleAddToCart(part, user) {
       
       const cartItem = {
@@ -63,6 +64,36 @@ function App() {
         console.log(cartArr)
     }
 
+    function handleAddPart(e, user, title, price, quantity, year, make, model,  image, description) {
+      e.preventDefault()
+      console.log('clicked')
+      const partItem = {
+        user_id: user.id,
+        title: title,
+        make: make,
+        model: model,
+        year: year,
+        price: price,
+        quantity: quantity,
+        image: image,
+        description: description
+      };
+      let config = {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(partItem),
+      };
+      fetch("/parts", config)
+        .then((r) => r.json())
+        .then((data) => setFullPartList([...fullPartList, data]));
+        console.log(fullPartList)
+        console.log("added")
+    }
+
+
   useEffect(() => {
     fetch('/me').then((response) => {
       if (response.ok) {
@@ -83,6 +114,16 @@ function App() {
     })
   }
 
+  function handleDeleteClick(id) {
+    fetch(`/user_cart/${id}`, {
+      method: "DELETE",
+    });
+    const filteredCart = cartArr.filter((item) => item.id !== id);
+    setCartArr(filteredCart);
+  }
+
+  
+
   const onLogin = (user) => {
     setUser(user)
     
@@ -102,10 +143,10 @@ function App() {
         <HomeContainer fullPartList={fullPartList} handleAddToCart={handleAddToCart} user={user}/>
        </Route> 
        <Route exact path="/account">
-        <Account user={user}/>
+        <Account user={user}  handleAddPart={handleAddPart}/>
        </Route> 
        <Route exact path="/cart">
-        <CartContainer user={user} cartArr={cartArr}/>
+        <CartContainer user={user} cartArr={cartArr} onDelete={handleDeleteClick}/>
        </Route>
 
 

@@ -24,19 +24,13 @@ ActiveRecord::Schema.define(version: 2021_09_24_170427) do
     t.string "model"
     t.string "image"
     t.text "description"
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_parts_on_user_id"
   end
 
   create_table "user_carts", force: :cascade do |t|
-    t.string "title"
-    t.float "price"
-    t.integer "quantity"
-    t.integer "year"
-    t.string "make"
-    t.string "model"
-    t.string "image"
-    t.text "description"
     t.bigint "part_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -45,33 +39,14 @@ ActiveRecord::Schema.define(version: 2021_09_24_170427) do
     t.index ["user_id"], name: "index_user_carts_on_user_id"
   end
 
-  create_table "user_parts", force: :cascade do |t|
-    t.string "title"
-    t.float "price"
-    t.integer "quantity"
-    t.integer "year"
-    t.string "make"
-    t.string "model"
-    t.string "image"
-    t.text "description"
-    t.bigint "part_id", null: false
-    t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["part_id"], name: "index_user_parts_on_part_id"
-    t.index ["user_id"], name: "index_user_parts_on_user_id"
-  end
-
   create_table "users", force: :cascade do |t|
-    t.string "name"
     t.string "username"
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "parts", "users"
   add_foreign_key "user_carts", "parts"
   add_foreign_key "user_carts", "users"
-  add_foreign_key "user_parts", "parts"
-  add_foreign_key "user_parts", "users"
 end

@@ -9,6 +9,7 @@ class CreateParts < ActiveRecord::Migration[6.1]
       t.string :model
       t.string :image
       t.text :description
+      t.references :user, null: false, foreign_key: true
 
       t.timestamps
     end

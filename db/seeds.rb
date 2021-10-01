@@ -7,16 +7,14 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 puts "destroying"
 UserCart.destroy_all
-UserPart.destroy_all
 User.destroy_all
 Part.destroy_all
 
 puts 'Seeding'
 
+user = User.create( username: 'AaronDski', password: 'pass')
 
-part = Part.create(title: 'tires', price: 50, quantity: 1, year: 2014, make: 'Lexus', model: 'LX470', image: ' ', description: 'tires')
+part = Part.create(user_id: user.id, title: 'tires', price: 50, quantity: 1, year: 2014, make: 'Lexus', model: 'LX470', image: ' ', description: 'These tires have 50% tread left')
 
-user = User.create(name: 'Aaron', username: 'AaronDski', password: 'pass')
 
-user_part = UserPart.create(title: 'tires', price: 500, quantity: 4, year: 2000, make: 'Lexus', model: 'LX470', image: ' ', description: 'tires', part_id:part.id, user_id:user.id) 
 puts "done"
