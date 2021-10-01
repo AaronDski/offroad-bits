@@ -4,8 +4,8 @@ class ApplicationController < ActionController::API
   wrap_parameters format: []
 
   def authorize
-    session.load!
-      @current_user = User.find_by(id: session[:user_id])
+    
+      @current_user ||= User.find_by(id: session[:user_id])
   
       render json: { errors: ["Not authorized"] }, status: :unauthorized unless @current_user
   end

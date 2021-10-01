@@ -1,8 +1,8 @@
 class UserCartsController < ApplicationController
-    skip_before_action :authorize, only: [ :create, :index, :show]
+    skip_before_action :authorize, only: [ :create, :show]
 
     def index
-        byebug
+        
         render json: @current_user.user_carts
     end
 
