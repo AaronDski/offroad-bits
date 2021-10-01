@@ -30,7 +30,7 @@ function Home({part,handleAddToCart, user}) {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small" onClick={() => handleAddToCart(part, user)}>ADD TO CART</Button>
+          <Button size="small" onClick={() => handleAddToCart(part, user)}>ADD TO WATCHLIST</Button>
         </CardActions>
       </Card>
     );

@@ -19,10 +19,10 @@ function Cart({item, handleDeleteClick}) {
       <Card key={item.id}sx={{ minWidth: 275, maxWidth: 400 }}>
         <CardContent>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-            {item.title}
+            {item.part.title}
           </Typography>
           <Typography variant="h5" component="div">
-            ${item.price}
+            ${item.part.price}
           </Typography>
           <Typography sx={{ mb: 1.5 }} color="text.secondary">
             adjective

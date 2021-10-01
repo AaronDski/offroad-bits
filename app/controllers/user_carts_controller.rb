@@ -2,7 +2,8 @@ class UserCartsController < ApplicationController
     skip_before_action :authorize, only: [ :create, :index, :show]
 
     def index
-        render json: UserCart.all
+        byebug
+        render json: @current_user.user_carts
     end
 
     def show 
@@ -11,13 +12,12 @@ class UserCartsController < ApplicationController
 
     def create
         usercart = UserCart.create!(part_params)
-        # session[:user_id] = user.id
         render json: usercart, status: :created
     end
 
     private
 
     def part_params
-        params.permit(:user_id, :part_id, :title, :price, :quantity, :year, :make, :model, :image, :description)
+        params.permit(:user_id, :part_id)
     end
 end

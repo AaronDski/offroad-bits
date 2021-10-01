@@ -27,29 +27,22 @@ function App() {
       
     },[]);
 
-    console.log(fullPartList)
+    // console.log(fullPartList)
 
     useEffect(() => {
       fetch('/user_carts')
       .then((r) => r.json())
       .then(setCartArr)
+      
     },[]);
 
 
     function handleAddToCart(part, user) {
-      
+      console.log(part)
       const cartItem = {
         user_id: user.id,
         part_id: part.id,
-        title: part.title,
-        make: part.make,
-        model: part.model,
-        year: part.year,
-        price: part.price,
-        quantity: part.quantity,
-        image: part.image,
-        description: part.description
-      };
+       };
       let config = {
         method: "POST",
         headers: {
