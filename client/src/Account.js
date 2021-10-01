@@ -18,14 +18,14 @@ function Account({user, handleAddPart}) {
 
     const history = useHistory();
     const [title, setTitle] = useState("");
-    const [price, setPrice] = useState("");
-    const [quantity, setQuantity] = useState("");
-    const [year, setYear] = useState("");
+    const [price, setPrice] = useState(0);
+    const [quantity, setQuantity] = useState(0);
+    const [year, setYear] = useState(0);
     const [make, setMake] = useState("");
     const [model, setModel] = useState("");
     const [image, setImage] = useState("");
     const [description, setDescription] = useState("");
-
+    console.log(title)
     
     
 
@@ -39,7 +39,7 @@ function Account({user, handleAddPart}) {
     
             <Box
             component="form"
-            onSubmit={() => handleAddPart(user, title, price, quantity, year, make, model,  image, description)}
+            onSubmit={(e) => handleAddPart(e, user, title, price, quantity, year, make, model,  image, description)}
             sx={{
                 "& .MuiTextField-root": { m: 1, width: "25ch" },
                 "& .MuiButton-root": { m: 1, width: "15ch" },
@@ -53,12 +53,14 @@ function Account({user, handleAddPart}) {
                 id="outlined-password-input"
                 label="Title"
                 type="title"
+                value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 />
                <FormControl  sx={{ width: '25ch' }} variant="standard">
                 <InputLabel htmlFor="standard-adornment-amount">Asking Price</InputLabel>
                 <Input
                 id="standard-adornment-amount"
+                value={price}
                 onChange={(e) => setPrice(e.target.value)}
                 startAdornment={<InputAdornment position="start">$</InputAdornment>}
                 />
@@ -67,30 +69,35 @@ function Account({user, handleAddPart}) {
                 id="outlined-password-input"
                 label="Quantity"
                 type="quantity"
+                value={quantity}
                 onChange={(e) => setQuantity(e.target.value)}
                 />
                 <TextField
                 id="outlined-password-input"
                 label="Year"
                 type="Year"
+                value={year}
                 onChange={(e) => setYear(e.target.value)}
                 />
                 <TextField
                 id="outlined-password-input"
                 label="Make"
                 type="Make"
+                value={make}
                 onChange={(e) => setMake(e.target.value)}
                 />
                 <TextField
                 id="outlined-password-input"
                 label="Model"
                 type="Model"
+                value={model}
                 onChange={(e) => setModel(e.target.value)}
                 />
                 <TextField
                 id="outlined-password-input"
                 label="Image Url"
                 type="Model"
+                value={image}
                 onChange={(e) => setImage(e.target.value)}
                 />
                 <TextField
@@ -98,6 +105,7 @@ function Account({user, handleAddPart}) {
                 label="Description"
                 multiline
                 rows={5}
+                value={description}
                 variant="standard"
                 onChange={(e) => setDescription(e.target.value)}
 

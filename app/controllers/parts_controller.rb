@@ -1,12 +1,11 @@
 class PartsController < ApplicationController
-  skip_before_action :authorize, only: [:index]
+  skip_before_action :authorize, only: [:index, :create]
   def index
     render json: Part.all
   end
 
   def create
     part = Part.create!(part_params)
-    session[:user_id] = user.id
     render json: part, status: :created
   end
 
