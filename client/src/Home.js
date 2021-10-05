@@ -4,6 +4,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import CardMedia from '@mui/material/CardMedia';
 
 
 
@@ -12,7 +13,14 @@ import Typography from '@mui/material/Typography';
 function Home({part,handleAddToCart, user}) {
   
     return (
+      <div key={part.id}>
       <Card sx={{ minWidth: 275, maxWidth: 400 }}>
+      <CardMedia
+      component="img"
+      height="300"
+      image={part.image}
+      alt="No Image Provided"
+    />
         <CardContent key={part.id}>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
             {part.title}
@@ -33,15 +41,11 @@ function Home({part,handleAddToCart, user}) {
           <Button size="small" onClick={() => handleAddToCart(part, user)}>ADD TO WATCHLIST</Button>
         </CardActions>
       </Card>
+      
+  </div>
+
     );
-  
 
-
-  
-  
-  // return(
-  //   <p></p>
-  // )
 }
 
 export default Home

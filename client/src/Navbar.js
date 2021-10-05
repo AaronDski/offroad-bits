@@ -20,7 +20,7 @@ function Navbar({handleLogoutClick}) {
     <Tabs value={value} onChange={handleChange} aria-label="icon label tabs example">
       <Tab component={NavLink} to='/' icon={<StoreTwoToneIcon />} label="LISTINGS" />
       <Tab component={NavLink} to='/account' icon={<AccountCircleTwoToneIcon />} label="ACCOUNT" />
-      <Tab component={NavLink} to='/cart' icon={<ShoppingCartTwoToneIcon />} label="WATCHLIST" />
+      <Tab component={NavLink} to='/watchlist' icon={<ShoppingCartTwoToneIcon />} label="WATCHLIST" />
         <Tab component={NavLink} to='/' icon={<LogoutTwoToneIcon />} label="LOGOUT" onClick={handleLogoutClick}/>
         <Tab component={NavLink} to='/login' icon={<LogoutTwoToneIcon />} label="LOGIN" />
 

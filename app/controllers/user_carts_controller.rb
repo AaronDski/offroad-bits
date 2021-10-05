@@ -1,5 +1,5 @@
 class UserCartsController < ApplicationController
-    skip_before_action :authorize, only: [ :create, :show]
+    skip_before_action :authorize, only: [ :create, :show, :destroy]
 
     def index
         
@@ -13,6 +13,13 @@ class UserCartsController < ApplicationController
     def create
         usercart = UserCart.create!(part_params)
         render json: usercart, status: :created
+    end
+
+    def destroy
+        usercart = UserCart.find(params[:id])
+        usercart.destroy
+        head :no_content
+
     end
 
     private

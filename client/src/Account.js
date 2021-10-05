@@ -1,45 +1,110 @@
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import { TextField } from "@material-ui/core";
 import Button from "@mui/material/Button";
 import * as React from "react";
 import Box from "@mui/material/Box";
-import Grid from '@mui/material/Grid';
+// import Grid from '@mui/material/Grid';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import Input from '@mui/material/Input';
 import InputAdornment from '@mui/material/InputAdornment';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+import EditForm from "./EditForm";
+import ImageUpload from "./ImageUpload";
 
 
-function Account({user, handleAddPart}) {
+
+function Account({user, handleAddPart, full, removeListing, editListing, editPartForm, setEditPartForm}) {
     // console.log(user)
 
     const renderAcc = user  ? (<p>Hello {user.username}</p>) : (<p>Please login or sign up to view account</p>)
 
-    const history = useHistory();
+    // const history = useHistory();
     const [title, setTitle] = useState("");
     const [price, setPrice] = useState(0);
     const [quantity, setQuantity] = useState(0);
     const [year, setYear] = useState(0);
     const [make, setMake] = useState("");
     const [model, setModel] = useState("");
-    const [image, setImage] = useState("");
     const [description, setDescription] = useState("");
-    console.log(title)
+    const [imageURL, setImageURL] = useState('')
+
+    function handleImageUpload (e, cloudImage) {
+        e.preventDefault()
+        console.log(cloudImage)
+    const formData = new FormData() 
+    formData.append('file', cloudImage)
+    formData.append('upload_preset', 'UPLOADBITS')
+    formData.append('cloud_name', 'dkkvfuaso')
+
     
     
+    fetch('https://api.cloudinary.com/v1_1/dkkvfuaso/image/upload',{
+        method: 'POST',
+        body: formData
+    })
+      .then((r) => r.json())
+      .then((data) => setImageURL(data.url));
 
+      console.log(imageURL)
 
+    }
+   
+
+   
+    const userListings = full.filter(listing => listing.user.id === user.id)
+   
+    const disListings = userListings === [] ? null : userListings.map((list) => {
+        return (
+            
+            <div key={list.id}>
+            <Card sx={{ minWidth: 275, maxWidth: 400 }}>
+              <CardContent>
+                <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                  {list.title}
+                </Typography>
+                <Typography variant="h5" component="div">
+                  ${list.price}
+                </Typography>
+               
+                <Typography variant="body2">
+                  {list.year}, {list.make}, {list.model}
+                  <br />
+                  {list.description}
+                </Typography>
+              </CardContent>
+              <CardActions>
+                
+             <EditForm list={list} editPartForm={editPartForm} editListing={editListing} user={user} setEditPartForm={setEditPartForm} />
+                
+              </CardActions>
+              <CardActions>
+                <Button size="small" onClick={() => removeListing(list.id)}>Remove</Button>
+              </CardActions>
+            </Card>
+
+            </div>
+          );
+
+    })
+
+    console.log(imageURL)
     return (
-    <>
+    <div>
     
     {renderAcc}
+
+           
+        <ImageUpload handleImageUpload={handleImageUpload} />
     
-    
-    
+   
             <Box
             component="form"
-            onSubmit={(e) => handleAddPart(e, user, title, price, quantity, year, make, model,  image, description)}
+            onSubmit={(e) => handleAddPart(e, user, title, price, quantity, year, make, model,  imageURL, description)}
             sx={{
                 "& .MuiTextField-root": { m: 1, width: "25ch" },
                 "& .MuiButton-root": { m: 1, width: "15ch" },
@@ -93,13 +158,7 @@ function Account({user, handleAddPart}) {
                 value={model}
                 onChange={(e) => setModel(e.target.value)}
                 />
-                <TextField
-                id="outlined-password-input"
-                label="Image Url"
-                type="Model"
-                value={image}
-                onChange={(e) => setImage(e.target.value)}
-                />
+                
                 <TextField
                 id="standard-multiline-static"
                 label="Description"
@@ -110,6 +169,7 @@ function Account({user, handleAddPart}) {
                 onChange={(e) => setDescription(e.target.value)}
 
                 />
+                
                 <Button
                     variant="text"
                     color={"primary"}
@@ -118,12 +178,13 @@ function Account({user, handleAddPart}) {
                 >
                     Add Listing
                 </Button>
+                {disListings}
             </div>
             </Box>
-  
+   
     
     
-    </>
+    </div>
     
     );
 

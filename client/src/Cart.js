@@ -8,11 +8,7 @@ import Typography from '@mui/material/Typography';
 
 
 
-function Cart({item, handleDeleteClick}) {
-  
-
-
-
+function Cart({item, onDelete}) {
   
 
     return (
@@ -24,28 +20,19 @@ function Cart({item, handleDeleteClick}) {
           <Typography variant="h5" component="div">
             ${item.part.price}
           </Typography>
-          <Typography sx={{ mb: 1.5 }} color="text.secondary">
-            adjective
-          </Typography>
+         
           <Typography variant="body2">
-            {item.year}, {item.make}, {item.model}
+            {item.part.year}, {item.part.make}, {item.part.model}
             <br />
-            {item.description}
+            {item.part.description}
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small" onClick={() => handleDeleteClick(item.id)}>Remove From Cart</Button>
+          <Button size="small" onClick={() => onDelete(item.id)}>Remove From Watchlist</Button>
         </CardActions>
       </Card>
     );
   
-
-
-  
-  
-  // return(
-  //   <p></p>
-  // )
 }
 
 export default Cart
