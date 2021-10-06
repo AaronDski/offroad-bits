@@ -12,7 +12,6 @@ import DialogTitle from '@mui/material/DialogTitle';
 function AddMessage ({ handleAddMessage, user, list }) {
  const [messContent, setMessContent] = useState('')
  const [messSub, setMessSub] = useState('')
- console.log(messContent)
 
  const [open, setOpen] = React.useState(false);
    
@@ -61,7 +60,7 @@ function AddMessage ({ handleAddMessage, user, list }) {
                 </DialogContent>
                 <DialogActions>
                 <Button onClick={handleClose}>Cancel</Button>
-                <Button type='submit' onClick={() => console.log('add mess')} >Send</Button>
+                <Button type='submit' onClick={(e) => handleAddMessage(e, list, user,  messContent, messSub)}>Send</Button>
                 </DialogActions>
             </Dialog>
             </div>

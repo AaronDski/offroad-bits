@@ -9,7 +9,6 @@ import Grid from '@mui/material/Grid';
 
 
 function Login({ setUser, onLogin }) {
-  // const classes = useStyles()
   const history = useHistory();
   const [login, setLogin] = useState(true);
   const [userName, setUserName] = useState("");
@@ -17,12 +16,10 @@ function Login({ setUser, onLogin }) {
 
   const handleClick = () => {
     setLogin((login) => !login);
-    console.log("clicked");
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("submited");
 
     const userCred = {
       username: userName,
