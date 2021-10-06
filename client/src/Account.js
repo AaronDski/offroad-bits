@@ -15,10 +15,11 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import EditForm from "./EditForm";
 import ImageUpload from "./ImageUpload";
+import AddMessage from "./AddMessage";
 
 
 
-function Account({user, handleAddPart, full, removeListing, editListing, editPartForm, setEditPartForm}) {
+function Account({user, handleAddPart, full, removeListing, editListing, editPartForm, setEditPartForm, }) {
     // console.log(user)
 
     const renderAcc = user  ? (<p>Hello {user.username}</p>) : (<p>Please login or sign up to view account</p>)
@@ -83,8 +84,9 @@ function Account({user, handleAddPart, full, removeListing, editListing, editPar
                 
               </CardActions>
               <CardActions>
-                <Button size="small" onClick={() => removeListing(list.id)}>Remove</Button>
+                <Button size="small" variant="outlined" onClick={() => removeListing(list.id)}>Remove</Button>
               </CardActions>
+              <AddMessage user={user} list={list}/>
             </Card>
 
             </div>

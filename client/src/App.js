@@ -16,6 +16,7 @@ function App() {
   const [fullPartList, setFullPartList] = useState([])
   const [cartArr, setCartArr] = useState([])
   const [editPartForm, setEditPartForm] = useState('')
+  const [messArr, setMessArr] = useState([])
   // console.log(editPartForm)
 
   
@@ -29,7 +30,13 @@ function App() {
       
     },[]);
 
-    // console.log(fullPartList)
+    useEffect(() => {
+      fetch('/me').then((response) => {
+        if (response.ok) {
+          response.json().then(setUser);
+        }
+      });
+    }, []);
 
     useEffect(() => {
       fetch('/user_carts')
@@ -37,6 +44,36 @@ function App() {
       .then(setCartArr)
       
     },[]);
+
+    useEffect(() => {
+      fetch('/part_messages')
+      .then((r) => r.json())
+      .then(setMessArr)
+      
+    },[]);
+
+    function handleAddMessage(e, list, user, messContent, messSub) {
+      e.preventDefault()
+      // console.log(part)
+      const pmContent = {
+        subject: messSub,
+        content: messContent,
+        user_id: user.id,
+        part_id: list.id,
+       };
+      let config = {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(pmContent),
+      };
+      fetch("/part_messages", config)
+        .then((r) => r.json())
+        .then((data) => setMessArr([...messArr, data]));
+        console.log(messArr)
+    }
 
 
     function handleAddToCart(part, user) {
@@ -84,19 +121,13 @@ function App() {
       fetch("/parts", config)
         .then((r) => r.json())
         .then((data) => setFullPartList([...fullPartList, data]));
-        console.log(fullPartList)
-        console.log("added")
+        // console.log(fullPartList)
+        // console.log("added")
 
     }
 
 
-  useEffect(() => {
-    fetch('/me').then((response) => {
-      if (response.ok) {
-        response.json().then(setUser);
-      }
-    });
-  }, []);
+  
 
   function handleLogoutClick(){
     if (window.confirm("Are you sure you want to Logout?")) {
@@ -179,10 +210,10 @@ function App() {
         <HomeContainer fullPartList={fullPartList} handleAddToCart={handleAddToCart} user={user}/>
        </Route> 
        <Route exact path="/account">
-        <Account user={user} setEditPartForm={setEditPartForm} editPartForm={editPartForm} handleAddPart={handleAddPart} full={fullPartList} removeListing={removeListing} editListing={editListing}/>
+        <Account user={user} setEditPartForm={setEditPartForm} editPartForm={editPartForm} handleAddPart={handleAddPart} full={fullPartList} removeListing={removeListing} editListing={editListing} handleAddMessage={handleAddMessage}/>
        </Route> 
        <Route exact path="/watchlist">
-        <CartContainer user={user} cartArr={cartArr} onDelete={handleDeleteClick}/>
+        <CartContainer user={user} cartArr={cartArr} onDelete={handleDeleteClick} handleAddMessage={handleAddMessage}/>
        </Route>
 
 

@@ -4,6 +4,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import AddMessage from './AddMessage';
 
 
 
@@ -29,6 +30,7 @@ function Cart({item, onDelete}) {
         </CardContent>
         <CardActions>
           <Button size="small" onClick={() => onDelete(item.id)}>Remove From Watchlist</Button>
+          <AddMessage />
         </CardActions>
       </Card>
     );

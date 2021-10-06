@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :part_messages
   resources :user_carts
   resources :parts
   resources :users

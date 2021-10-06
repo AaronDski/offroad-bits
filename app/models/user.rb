@@ -3,6 +3,7 @@ class User < ApplicationRecord
     has_secure_password
     has_many :parts
     has_many :user_carts
+    has_many :part_messages
     
     has_many :listings, through: :user_carts, source: :part
 
