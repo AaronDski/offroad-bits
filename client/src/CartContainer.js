@@ -1,7 +1,12 @@
 import Cart from "./Cart";
 
-function CartContainer({ user, cartArr, onMessDelete, onDelete, handleAddMessage }) {
-
+function CartContainer({
+  user,
+  cartArr,
+  onMessDelete,
+  onDelete,
+  handleAddMessage,
+}) {
   const view =
     cartArr === [] ? <p>Add your First Itme to Your Watch List</p> : null;
   const filteredCart =
@@ -11,9 +16,14 @@ function CartContainer({ user, cartArr, onMessDelete, onDelete, handleAddMessage
       <p>Login To create a watchlist</p>
     );
   const renderCart = filteredCart.map((item) => (
-    <Cart item={item} user={user} onDelete={onDelete} handleAddMessage={handleAddMessage} onMessDelete={onMessDelete}/>
+    <Cart
+      item={item}
+      user={user}
+      onDelete={onDelete}
+      handleAddMessage={handleAddMessage}
+      onMessDelete={onMessDelete}
+    />
   ));
-  // console.log(filteredCart)
 
   return (
     <>

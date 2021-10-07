@@ -14,22 +14,23 @@ function Home({part,handleAddToCart, user}) {
   
     return (
       <div key={part.id}>
-      <Card sx={{ minWidth: 275, maxWidth: 400 }}>
+      <Card sx={{ minWidth:'350px', maxWidth: '400px', maxHeight:'500'}}>
       <CardMedia
       component="img"
-      height="300"
+      // height="300"
       image={part.image}
       alt="No Image Provided"
-    />
+      sx={{ height:'300px'}}
+      />
         <CardContent key={part.id}>
-          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+          <Typography sx={{ fontSize: 20 }} color="text.secondary" gutterBottom>
             {part.title}
           </Typography>
           <Typography variant="h5" component="div">
             ${part.price}
           </Typography>
           <Typography sx={{ mb: 1.5 }} color="text.secondary">
-            adjective
+            
           </Typography>
           <Typography variant="body2">
             {part.year}, {part.make}, {part.model}

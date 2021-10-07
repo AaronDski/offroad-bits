@@ -6,6 +6,8 @@ import Account from "./Account";
 import Navbar from "./Navbar";
 import "./App.css";
 import CartContainer from "./CartContainer";
+import Container from '@mui/material/Container';
+
 
 function App() {
   const history = useHistory();
@@ -64,15 +66,16 @@ function App() {
       .then((r) => r.json())
       .then((data) => setMessArr([...messArr, data]))
 
-      .then(() => fetch('/user_carts',) 
-        .then(r => r.json())
-        .then(setCartArr)
+      .then(() =>
+        fetch("/user_carts")
+          .then((r) => r.json())
+          .then(setCartArr)
       )
-      .then(() => fetch('/parts',) 
-        .then(r => r.json())
-        .then(setFullPartList)
-      )
-    
+      .then(() =>
+        fetch("/parts")
+          .then((r) => r.json())
+          .then(setFullPartList)
+      );
   }
 
   function handleAddToCart(part, user) {
@@ -170,15 +173,16 @@ function App() {
       fetch(`/part_messages/${id}`, {
         method: "DELETE",
       })
-      
-      .then(() => fetch('/user_carts',) 
-        .then(r => r.json())
-        .then(setCartArr)
-      )
-      .then(() => fetch('/parts',) 
-        .then(r => r.json())
-        .then(setFullPartList)
-      )
+        .then(() =>
+          fetch("/user_carts")
+            .then((r) => r.json())
+            .then(setCartArr)
+        )
+        .then(() =>
+          fetch("/parts")
+            .then((r) => r.json())
+            .then(setFullPartList)
+        );
     }
   }
   function editListing(e, list, user, editForm) {
@@ -219,7 +223,7 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <Container sx={{bgcolor:'yellow'}}>
       <Navbar handleLogoutClick={handleLogoutClick} user={user} />
       <Switch>
         <Route exact path="/login">
@@ -243,7 +247,6 @@ function App() {
             editListing={editListing}
             handleAddMessage={handleAddMessage}
             onMessDelete={onMessDelete}
-
           />
         </Route>
         <Route exact path="/watchlist">
@@ -257,7 +260,7 @@ function App() {
           />
         </Route>
       </Switch>
-    </div>
+    </Container>
   );
 }
 

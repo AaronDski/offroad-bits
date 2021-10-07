@@ -6,6 +6,7 @@ class PartMessageSerializer < ActiveModel::Serializer
   def username
     object.user.username
   end
+
   def user_id
     object.user.id
   end

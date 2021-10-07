@@ -14,8 +14,7 @@ import Typography from "@mui/material/Typography";
 import EditForm from "./EditForm";
 import ImageUpload from "./ImageUpload";
 import AddMessage from "./AddMessage";
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
 function Account({
   user,
@@ -63,8 +62,11 @@ function Account({
 
   const userListings = full.filter((listing) => listing.user.id === user.id);
 
-  const disListings = userListings === [] ? null : userListings.map((list) => {
-      console.log(list)
+  const disListings =
+    userListings === []
+      ? null
+      : userListings.map((list) => {
+          console.log(list);
           return (
             <div key={list.id}>
               <Card sx={{ minWidth: 275, maxWidth: 400 }}>
@@ -87,19 +89,25 @@ function Account({
                   </Typography>
                   <Typography variant="body2">
                     {list.part_messages.map((message) => {
-                        return(
-                            <>
-                             <Typography variant="body2">
-                                From:{message.username}
-                                <br/>
-                                {message.subject}
-                                <br />
-                                {message.content}
-                            </Typography>
-                            {message.user_id !== user.id ? null : <Button size="small"  onClick={() => onMessDelete(message.id)}><DeleteForeverIcon/></Button>}
-                            
-                            </>
-                        )
+                      return (
+                        <>
+                          <Typography variant="body2">
+                            From:{message.username}
+                            <br />
+                            {message.subject}
+                            <br />
+                            {message.content}
+                          </Typography>
+                          {message.user_id !== user.id ? null : (
+                            <Button
+                              size="small"
+                              onClick={() => onMessDelete(message.id)}
+                            >
+                              <DeleteForeverIcon />
+                            </Button>
+                          )}
+                        </>
+                      );
                     })}
                   </Typography>
                 </CardContent>
