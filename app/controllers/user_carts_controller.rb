@@ -3,7 +3,7 @@ class UserCartsController < ApplicationController
 
     def index
         
-        render json: @current_user.user_carts
+        render json: @current_user.user_carts, include: 'part.part_messages'
     end
 
     def show 

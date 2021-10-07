@@ -9,11 +9,11 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
 function Cart({ item, user, handleAddMessage, onDelete, onMessDelete }) {
   let list = item.part;
-
+console.log(item)
   return (
-    <Card key={item.id} sx={{ minWidth: 275, maxWidth: 400 }}>
+    <Card key={item.id} sx={{ minWidth: 275, maxWidth: 400, marginBottom:'3vw' }}>
       <CardContent>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+        <Typography sx={{ fontSize: 18 }} color="text.secondary" gutterBottom>
           {item.part.title}
         </Typography>
         <Typography variant="h5" component="div">
@@ -26,18 +26,21 @@ function Cart({ item, user, handleAddMessage, onDelete, onMessDelete }) {
           {item.part.description}
         </Typography>
         <Typography variant="body2">
-          {item.part_messages.map((message) => {
+          {!item.part.part_messages ? null :
+          
+          item.part.part_messages.map((message) => {
+            // console.log(message)
             return (
               <>
                 <Typography variant="body2">
                   From:{" "}
-                  {message.user_id === user.id
-                    ? item.user.username
-                    : item.part.username}
+                  {message.user_id === user.id ? 
+                     user.username
+                    : message.username}
                   <br />
                   Subject: {message.subject}
                   <br />
-                  {message.content}
+                  Message: {message.content}
                 </Typography>
                 {message.user_id !== user.id ? null : (
                   <Button size="small" onClick={() => onMessDelete(message.id)}>

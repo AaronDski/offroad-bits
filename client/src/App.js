@@ -35,8 +35,15 @@ function App() {
 
   useEffect(() => {
     fetch("/user_carts")
-      .then((r) => r.json())
-      .then(setCartArr);
+      .then((r) => {
+        if (r.ok){
+          r.json().then(setCartArr);
+        } else{
+          setCartArr([])
+        }
+
+      })
+     
   }, []);
 
   useEffect(() => {
@@ -223,7 +230,7 @@ function App() {
   };
 
   return (
-    <Container sx={{bgcolor:'yellow'}}>
+    <Container sx={{bgcolor:'white'}}>
       <Navbar handleLogoutClick={handleLogoutClick} user={user} />
       <Switch>
         <Route exact path="/login">

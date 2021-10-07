@@ -15,6 +15,7 @@ import EditForm from "./EditForm";
 import ImageUpload from "./ImageUpload";
 import AddMessage from "./AddMessage";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+// import { makeStyles } from '@mui/styles';
 
 function Account({
   user,
@@ -57,19 +58,32 @@ function Account({
       .then((r) => r.json())
       .then((data) => setImageURL(data.url));
 
-    console.log(imageURL);
+    
   }
 
-  const userListings = full.filter((listing) => listing.user.id === user.id);
+
+  // const useStyles = makeStyles({
+  //   root: {
+  //     background: 'blue',
+  //     border: 0,
+  //     borderRadius: 3,
+  //     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+  //     color: 'white',
+  //   },
+  // });
+
+  // const classes = useStyles();
+
+  const userListings = user.length === 0 ? [] :  full.filter((listing) => listing.user.id === user.id);
 
   const disListings =
     userListings === []
-      ? null
+      ? <p>Please Login og Sign up to view Account</p>
       : userListings.map((list) => {
-          console.log(list);
+          // console.log(list);
           return (
-            <div key={list.id}>
-              <Card sx={{ minWidth: 275, maxWidth: 400 }}>
+            <div key={list.id } style={{background:'white', marginTop:'5vw', marginLeft:'-3vw'}} >
+              <Card sx={{ minWidth: 275, maxWidth: 400,background:'white' }}>
                 <CardContent>
                   <Typography
                     sx={{ fontSize: 14 }}
@@ -89,6 +103,7 @@ function Account({
                   </Typography>
                   <Typography variant="body2">
                     {list.part_messages.map((message) => {
+                      console.log(list)
                       return (
                         <>
                           <Typography variant="body2">
@@ -139,13 +154,13 @@ function Account({
           );
         });
 
-  console.log(imageURL);
+  // console.log(imageURL);
   return (
-    <div>
+    <div style={{marginTop:'10vw', textAlign:'center'}}>
       {renderAcc}
-
+      <div style={{marginLeft: '-40vw'}}>
       <ImageUpload handleImageUpload={handleImageUpload} />
-
+      </div>
       <Box
         component="form"
         onSubmit={(e) =>
@@ -166,7 +181,7 @@ function Account({
           "& .MuiTextField-root": { m: 1, width: "25ch" },
           "& .MuiButton-root": { m: 1, width: "15ch" },
         }}
-        style={{ marginLeft: "40vw" }}
+        style={{ marginLeft:'23vw', marginBottom:'10vw' }}
         noValidate
         autoComplete="off"
       >

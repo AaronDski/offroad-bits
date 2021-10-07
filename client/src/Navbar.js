@@ -16,7 +16,7 @@ function Navbar({ handleLogoutClick }) {
   };
 
   return (
-    <AppBar style={{background:"gray"}}>
+    <AppBar style={{background:"lightgray", }}>
     <Tabs
       value={value}
       onChange={handleChange}

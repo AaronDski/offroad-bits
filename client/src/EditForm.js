@@ -52,11 +52,14 @@ function EditForm({list, editPartForm, editListing, user,}) {
         <Box
         component="form"
         onSubmit={(e) => editListing(e, list, user, editForm)}
+        style={{ display: "flex", flexDirection: "column" }}
         >
             <div style={{ display: "flex", flexDirection: "column" }}>
             <Button variant="outlined" onClick={handleClickOpen}  >Edit Listing
             </Button>
-            <Dialog open={open} onClose={handleClose}>
+            <Dialog open={open} onClose={handleClose}
+            style={{ display: "flex", flexDirection: "column" }}
+            >
                 <DialogTitle>Edit</DialogTitle>
                 <DialogContent>
                 <DialogContentText>

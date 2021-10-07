@@ -73,7 +73,7 @@ function Login({ setUser, onLogin }) {
         "& .MuiTextField-root": { m: 1, width: "25ch" },
         "& .MuiButton-root": { m: 1, width: "15ch" },
       }}
-      style={{ marginLeft: "40vw" }}
+      style={{ marginTop: "10vw", marginLeft: '23vw' }}
       noValidate
       autoComplete="off"
     >

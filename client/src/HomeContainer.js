@@ -6,11 +6,11 @@ function HomeContainer({ fullPartList, handleAddToCart, user }) {
 
   return (
 
-    <div style={{marginLeft: '-8vw', width:'74vw'}}>
+    <div style={{marginLeft: '-8vw', width:'74vw', marginTop:'5vw', marginBottom:'5vw'}}>
       <Grid container spacing={5}
       sx={{
           marginTop: '40vw',
-        bgcolor: "black",
+        bgcolor: "white",
         margin: '0 auto'
       }}
       >
